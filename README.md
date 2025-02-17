@@ -1,4 +1,4 @@
-# 🎨 kientf_object_detection  
+# 🎨 KienTF Object Detection  
 **A refined and bug-fixed version of TensorFlow's Object Detection API**  
 
 ![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-FF6F00?style=flat&logo=tensorflow)  
