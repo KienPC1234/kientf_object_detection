@@ -1,4 +1,4 @@
-#Modded By KienTF
+#Modded By KienTF (KCD Dev) 
 import os
 from setuptools import find_packages, setup
 
