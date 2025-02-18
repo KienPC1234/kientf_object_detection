@@ -1,36 +1,52 @@
+from setuptools import find_packages, setup
 import os
 import shutil
 
+#<--BUILD FILE-->
+
 base_dir = os.path.dirname(os.path.abspath(__file__))
 object_detection_dir = os.path.join(base_dir, 'object_detection')
+os.makedirs(object_detection_dir, exist_ok=True)
 
-if os.path.exists(object_detection_dir):
-    shutil.rmtree(object_detection_dir)
-
-os.makedirs(object_detection_dir)
-
+files_to_copy = []
 for subdir, dirs, files in os.walk(base_dir):
-    if subdir == base_dir:
+    files_to_copy.extend(
+            os.path.join(subdir, file)
+            for file in files
+            if file.endswith(('.py', '.pyi'))
+        )
+        
+
+total_files = len(files_to_copy)
+
+for index, src_path in enumerate(files_to_copy):
+    dst_path = os.path.join(object_detection_dir, os.path.relpath(src_path, base_dir))
+    
+    try:
+        if os.path.exists(dst_path):
+            os.remove(dst_path)
+
+        os.makedirs(os.path.dirname(dst_path), exist_ok=True)
+
+        
+        shutil.copy2(src_path, dst_path)
+        
+
+    except Exception as e:
         continue
     
-    if any(file.endswith('.py') for file in files):
-        for file in files:
-            if file != 'setup.py':
-                src_path = os.path.join(subdir, file)
-                dst_path = os.path.join(object_detection_dir, os.path.relpath(src_path, base_dir))
-                
-                try:
+setuppt =  os.path.join(base_dir, 'object_detection', "setup.py")
+build = os.path.join(base_dir, 'object_detection', "build")
+build2 = os.path.join(base_dir, 'object_detection', "kientf_object_detection.egg-info")
 
-                    os.makedirs(os.path.dirname(dst_path), exist_ok=True)
-                    
-                    shutil.copy(src_path, dst_path)
-                except Exception as e:
-                    print(f"Could not copy file {src_path}. Error: {e}")
-                    continue
-            
-#Setup
+if os.path.exists(setuppt) and os.path.isfile(setuppt):
+    os.remove(setuppt)
 
-from setuptools import find_packages, setup
+for folder in [build, build2]:
+    if os.path.exists(folder) and os.path.isdir(folder):
+        shutil.rmtree(folder)
+
+#<--SETUP-->
 
 REQUIRED_PACKAGES = [
     'tensorflow>=2.0,<2.13',
@@ -48,7 +64,7 @@ REQUIRED_PACKAGES = [
     'lvis',
     'scipy',
     'pandas',
-    'tf-models-official>=2.7',
+    'tf-models-official>=2.5',
     'tensorflow_io',
     'keras',
     'protobuf==3.*',
@@ -63,8 +79,7 @@ setup(
     include_package_data=True,
     packages=(
         [p for p in find_packages() if p.startswith('object_detection')] +
-        find_packages(where=os.path.join('.', 'slim'))
-    ),
+        find_packages(where=os.path.join('.', 'slim'))),
     package_dir={
         'datasets': os.path.join('slim', 'datasets'),
         'nets': os.path.join('slim', 'nets'),
@@ -75,5 +90,14 @@ setup(
     description='TensorFlow Object Detection Library With Modded By Kien',
     long_description='This package is a modified version of TensorFlow\'s Object Detection Library, developed by KienTF for custom implementations and improvements.',
     long_description_content_type='text/markdown',
-    python_requires='>3.6'
+    python_requires='>3.6',
+    classifiers=[
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+        'License :: OSI Approved :: MIT License',
+        'Operating System :: OS Independent',
+    ],
 )
