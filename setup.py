@@ -6,7 +6,7 @@ REQUIRED_PACKAGES = [
     'tensorflow>=2.0,<2.13',
     'pyyaml>=6.0.0',
     'avro-python3',
-    'apache-beam',
+    'apache-beam<=2.50',
     'pillow',
     'lxml',
     'matplotlib',
