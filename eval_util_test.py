@@ -23,8 +23,8 @@ from absl.testing import parameterized
 
 import numpy as np
 import six
-from six.moves import range
-import tensorflow.compat.v1 as tf
+from six.moves import range # type: ignore
+import tensorflow.compat.v1 as tf # type: ignore
 from google.protobuf import text_format
 
 from object_detection import eval_util

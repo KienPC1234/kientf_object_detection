@@ -37,11 +37,12 @@ for index, src_path in enumerate(files_to_copy):
 setuppt =  os.path.join(base_dir, 'object_detection', "setup.py")
 build = os.path.join(base_dir, 'object_detection', "build")
 build2 = os.path.join(base_dir, 'object_detection', "kientf_object_detection.egg-info")
+build3 = os.path.join(base_dir,'object_detection','object_detection')
 
 if os.path.exists(setuppt) and os.path.isfile(setuppt):
     os.remove(setuppt)
 
-for folder in [build, build2]:
+for folder in [build, build2,build3]:
     if os.path.exists(folder) and os.path.isdir(folder):
         shutil.rmtree(folder)
 
