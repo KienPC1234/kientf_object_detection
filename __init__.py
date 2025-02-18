@@ -10,7 +10,7 @@ site_packages_path = os.path.join(sys.prefix, 'Lib', 'site-packages')
 augment_file_path = os.path.join(site_packages_path, 'official', 'vision', 'image_classification', 'augment.py')
 
 try:
-    from tensorflow.python.keras.layers.preprocessing import image_preprocessing as image_ops
+    from tensorflow.python.keras.layers.preprocessing import image_preprocessing as image_ops # type: ignore
     print("Module tensorflow.python.keras.layers.preprocessing is available.")
 except ModuleNotFoundError:
     print("Module not found. Proceeding to modify augment.py...")
@@ -36,7 +36,7 @@ except ModuleNotFoundError:
         print(f"File {augment_file_path} not found.")
 
 try:
-    from tensorflow.keras.preprocessing import image as image_ops
+    from tensorflow.keras.preprocessing import image as image_ops # type: ignore
     print("Module tensorflow.keras.preprocessing is available.")
 except ModuleNotFoundError:
     print("Module not found. Proceeding to modify augment.py...")

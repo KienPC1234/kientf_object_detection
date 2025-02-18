@@ -3,7 +3,7 @@ name: Build Python Package
 on:
   push:
     branches:
-      - main  # Thay đổi 'main' thành nhánh mà bạn muốn theo dõi (ví dụ: 'master')
+      - main  
 
 permissions:
   contents: read
@@ -19,7 +19,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.9"  # Cập nhật theo phiên bản Python cần thiết
+          python-version: "3.9" 
 
       - name: Install build tools
         run: |

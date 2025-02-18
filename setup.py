@@ -13,10 +13,6 @@ for subdir, dirs, files in os.walk(base_dir):
     files_to_copy.extend(
             os.path.join(subdir, file)
             for file in files
-<<<<<<< HEAD
-            if file.endswith(('.py', '.pyi'))
-=======
->>>>>>> 966a19f (Fixed Bugs)
         )
         
 
