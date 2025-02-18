@@ -72,20 +72,6 @@ from object_detection.builders import model_builder
 
 ---
 
-## 📂 Project Structure  
-```
-kientf_object_detection/
-│── configs/              # Configuration files for different models  
-│── data/                 # Training and validation datasets  
-│── models/               # Pre-trained models  
-│── training/             # Checkpoints and logs  
-│── scripts/              # Utility scripts for data processing  
-│── object_detection/     # Core detection module (fixed version)  
-│── README.md             # Project documentation  
-```
-
----
-
 ## 🤝 Contributing  
 Contributions are welcome! Feel free to open an issue or submit a pull request.  
 
