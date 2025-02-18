@@ -34,7 +34,7 @@ setup(
     include_package_data=True,
     packages=find_packages(where="."),  
     package_dir={
-        'object_detection': 'object_detection',
+        'object_detection': 'kientf_object_detection',
         'datasets': os.path.join('slim', 'datasets'),
         'nets': os.path.join('slim', 'nets'),
         'preprocessing': os.path.join('slim', 'preprocessing'),
