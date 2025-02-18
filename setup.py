@@ -1,24 +1,18 @@
 import os
 import shutil
 
-# Đường dẫn thư mục gốc chứa setup.py
 base_dir = os.path.dirname(os.path.abspath(__file__))
 object_detection_dir = os.path.join(base_dir, 'object_detection')
 
-# Nếu thư mục object_detection đã tồn tại, xóa đi
 if os.path.exists(object_detection_dir):
     shutil.rmtree(object_detection_dir)
 
-# Tạo thư mục object_detection mới
 os.makedirs(object_detection_dir)
 
-# Duyệt qua tất cả các thư mục con và file trong thư mục gốc
 for subdir, dirs, files in os.walk(base_dir):
-    # Loại trừ thư mục gốc
     if subdir == base_dir:
         continue
     
-    # Kiểm tra xem thư mục có chứa file Python (.py) không
     if any(file.endswith('.py') for file in files):
         for file in files:
             if file != 'setup.py':
@@ -26,13 +20,11 @@ for subdir, dirs, files in os.walk(base_dir):
                 dst_path = os.path.join(object_detection_dir, os.path.relpath(src_path, base_dir))
                 
                 try:
-                    # Tạo thư mục đích nếu chưa có
+
                     os.makedirs(os.path.dirname(dst_path), exist_ok=True)
                     
-                    # Sao chép file vào thư mục đích
                     shutil.copy(src_path, dst_path)
                 except Exception as e:
-                    # Nếu có lỗi, bỏ qua file này
                     print(f"Could not copy file {src_path}. Error: {e}")
                     continue
             
