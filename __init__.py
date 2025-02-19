@@ -1,6 +1,8 @@
 import warnings
 import os
 import sys
+import shutil
+import importlib
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
@@ -60,3 +62,24 @@ except ModuleNotFoundError:
         print(f"Modification completed in {augment_file_path}")
     else:
         print(f"File {augment_file_path} not found.")
+
+
+def get_package_path(package_name):
+    spec = importlib.util.find_spec(package_name)
+    if spec and spec.origin:
+        return os.path.dirname(spec.origin)
+    return None
+
+def delete_object_detection(package_name):
+    package_path = get_package_path(package_name)
+    if not package_path:
+        print(f"Package '{package_name}' not found.")
+        return
+    
+    target_path = os.path.join(package_path, "object_detection")
+    if os.path.exists(target_path) and os.path.isdir(target_path):
+        shutil.rmtree(target_path)
+        print(f"Deleted: {target_path}")
+
+delete_object_detection("object_detection")
+
