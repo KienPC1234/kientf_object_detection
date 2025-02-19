@@ -63,7 +63,7 @@ for folder in ["build", "build2", "build3"]:
 #<--SETUP-->
 
 REQUIRED_PACKAGES = [
-    'tensorflow>=2.0,<2.13',
+    'tensorflow>=2.0,<2.12',
     'pyyaml>=6.0.0',
     'avro-python3',
     'apache-beam<=2.50',

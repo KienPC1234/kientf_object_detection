@@ -1,4 +1,4 @@
-# Copyright 2020 The TensorFlow Authors. All Rights Reserved.
+# Copyright 2020 The TensorFlow Authors, Modded By KienTF. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,8 +18,8 @@ from tensorflow.python import tf2  # pylint: disable=import-outside-toplevel
 
 
 def is_tf1():
-  """Whether current TensorFlow Version is 1.X."""
-  return not tf2.enabled()
+  """Only Support TF2!"""
+  return tf2.enabled()
 
 
 def is_tf2():
