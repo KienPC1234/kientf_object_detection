@@ -18,8 +18,8 @@ from tensorflow.python import tf2  # pylint: disable=import-outside-toplevel
 
 
 def is_tf1():
-  """Only Support TF2!"""
-  return tf2.enabled()
+  """Whether current TensorFlow Version is 1.X."""
+  return not tf2.enabled()
 
 
 def is_tf2():
