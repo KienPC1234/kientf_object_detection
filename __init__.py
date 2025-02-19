@@ -74,12 +74,11 @@ if spec and spec.origin:
 
 if not package_path:
     print(f"Package 'object_detection' not found.")
-    pass
-
-target_path = os.path.join(package_path, "object_detection")
-if os.path.exists(target_path) and os.path.isdir(target_path):
-    shutil.rmtree(target_path)
-    print(f"Deleted: {target_path}")
+else:
+    target_path = os.path.join(package_path, "object_detection")
+    if os.path.exists(target_path) and os.path.isdir(target_path):
+        shutil.rmtree(target_path)
+        print(f"Deleted: {target_path}")
 
 
 
