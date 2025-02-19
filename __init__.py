@@ -4,12 +4,12 @@ import sys
 import shutil
 import importlib
 import absl.logging
-import tensorflow as tf
+import tensorflow as tflog
 
 #Dis Warn Spam
 absl.logging.set_verbosity(absl.logging.ERROR)
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
-tf.get_logger().setLevel('ERROR') 
+tflog.get_logger().setLevel('ERROR') 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 warnings.filterwarnings("ignore", category=UserWarning)
 
@@ -73,7 +73,7 @@ except ModuleNotFoundError:
         else:
             print(f"File {augment_file_path} not found.")
 
-
+#<--Delete File-->
 spec = importlib.util.find_spec("object_detection")
 if spec and spec.origin:
     package_path = os.path.dirname(spec.origin)
