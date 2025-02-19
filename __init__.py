@@ -3,13 +3,8 @@ import os
 import sys
 import shutil
 import importlib
-import absl.logging
-import tensorflow as tflog
 
 #Dis Warn Spam
-absl.logging.set_verbosity(absl.logging.ERROR)
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
-tflog.get_logger().setLevel('ERROR') 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 warnings.filterwarnings("ignore", category=UserWarning)
 
