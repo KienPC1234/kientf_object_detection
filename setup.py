@@ -42,9 +42,23 @@ build3 = os.path.join(base_dir,'object_detection','object_detection')
 if os.path.exists(setuppt) and os.path.isfile(setuppt):
     os.remove(setuppt)
 
-for folder in [build, build2,build3]:
+for folder in ["build", "build2", "build3"]:
     if os.path.exists(folder) and os.path.isdir(folder):
-        shutil.rmtree(folder)
+        for root, dirs, files in os.walk(folder, topdown=False):
+            for file in files:
+                try:
+                    os.remove(os.path.join(root, file))
+                except Exception as e:
+                    continue
+            for d in dirs:
+                try:
+                    os.rmdir(os.path.join(root, d))
+                except Exception as e:
+                    continue
+        try:
+            os.rmdir(folder)
+        except Exception as e:
+            continue
 
 #<--SETUP-->
 
