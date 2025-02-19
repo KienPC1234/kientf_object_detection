@@ -43,9 +43,9 @@ pip install git+https://github.com/KienPC1234/kientf_object_detection.git
 ```
 
 ### 🔹 Dependencies  
-Ensure you have **TensorFlow 2.x** installed (version **≤2.12**):  
+Ensure you have **TensorFlow 2.x** installed (version **<2.12**):  
 ```bash
-pip install "tensorflow<=2.12"
+pip install "tensorflow<2.12"
 ```
 
 ---
