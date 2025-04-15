@@ -1,0 +1,45 @@
+name: Build Python Package
+
+on:
+  push:
+    branches:
+      - main  
+
+permissions:
+  contents: read
+
+jobs:
+  release-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.9" 
+
+      - name: Install build tools
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install build
+
+      - name: Install dependencies
+        run: |
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi  # Cài đặt phụ thuộc từ requirements.txt nếu có
+
+      - name: Build release distributions
+        run: |
+          python -m build
+
+      - name: Ensure dist directory exists
+        run: |
+          mkdir -p dist
+
+      - name: Save built distributions as artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-dists
+          path: dist/
